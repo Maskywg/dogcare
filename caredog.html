@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筆記內容</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .note-card, .sub-card {
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .note-card {
+            border-left: 4px solid #3b82f6;
+        }
+        .note-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .sub-card {
+            border-left: 2px solid #60a5fa;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            background-color: #f8fafc;
+        }
+        .sub-card:hover {
+            background-color: #f1f5f9;
+        }
+        .note-content {
+            display: none;
+        }
+        .note-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 sm:p-8">
+    <div class="max-w-4xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-2">筆記內容</h1>
+            <p class="text-lg text-gray-600">從您的手寫筆記中整理出來的資訊</p>
+        </header>
+
+        <main class="grid gap-8">
+            <!-- Left Page Content -->
+            <div class="note-card p-6 rounded-lg shadow-md">
+                <div class="flex items-center justify-between text-blue-600 mb-2" onclick="toggleDetails('left-page-details')">
+                    <div class="flex items-center">
+                        <i class="fas fa-book-open text-2xl mr-3"></i>
+                        <h2 class="text-2xl font-semibold">左頁筆記</h2>
+                    </div>
+                    <i id="left-page-details-arrow" class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                </div>
+                <!-- Collapsible content for the whole left page -->
+                <div id="left-page-details" class="note-content mt-4">
+                    <!-- Boxer Section -->
+                    <div class="sub-card" onclick="toggleDetails(event, 'boxer-details')">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-medium text-xl text-gray-800">關於 Boxer</h3>
+                            <i id="boxer-details-arrow" class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        </div>
+                        <div id="boxer-details" class="note-content mt-2 space-y-2 text-gray-700">
+                            <p>to Boxer, 30~35 kg 虎皮子到 狗仔 沒長毛 <br> 習性 有人畜共患病，有毛狀病變。</p>
+                            <p class="font-medium mt-4">骨折</p>
+                            <ul class="list-disc pl-5 mt-2">
+                                <li>使能有骨頭可以將bone打入。 否則會傷到神經或血管。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Dewclaw Section -->
+                    <div class="sub-card" onclick="toggleDetails(event, 'dewclaw-details')">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-medium text-xl text-gray-800">關於 Dewclaw</h3>
+                            <i id="dewclaw-details-arrow" class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        </div>
+                        <div id="dewclaw-details" class="note-content mt-2 space-y-2 text-gray-700">
+                            <p>子宮 4-9 天發情 dewclaw（狼脂）生一起長 <br> dewclaw 爪 → 造成 → swell 發炎 → Tetanus</p>
+                            <p class="mt-4">to Boxer, Great Dan</p>
+                            <p>牙齦無色</p>
+                            <p>配合生理</p>
+                            <p>請留言 拍下這個景象，拍一個柱子的影片</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Page Content -->
+            <div class="note-card p-6 rounded-lg shadow-md">
+                <div class="flex items-center justify-between text-blue-600 mb-2" onclick="toggleDetails('right-page-details')">
+                    <div class="flex items-center">
+                        <i class="fas fa-book-open text-2xl mr-3"></i>
+                        <h2 class="text-2xl font-semibold">右頁筆記</h2>
+                    </div>
+                    <i id="right-page-details-arrow" class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                </div>
+                <!-- Collapsible content for the whole right page -->
+                <div id="right-page-details" class="note-content mt-4">
+                    <!-- 1-7 Day Section -->
+                    <div class="sub-card" onclick="toggleDetails(event, 'day1-7-details')">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-medium text-xl text-gray-800">發情 1-7 天</h3>
+                            <i id="day1-7-details-arrow" class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        </div>
+                        <div id="day1-7-details" class="note-content mt-2 space-y-2 text-gray-700">
+                            <ul class="list-disc pl-5">
+                                <li>陰道發炎 及 dewclaw</li>
+                                <li>陰道會充血，對對直接排卵有關係 (在卵巢旁邊)</li>
+                                <li>25~28 ℃ (20~22 ℃) 60%</li>
+                                <li>陰道發炎是PC 陰道發炎和副陰道發炎。</li>
+                                <li>傳播途徑 → 建築 <br> 今天晚上要結束 → 不會結束</li>
+                                <li>子宮內膜炎和人工授精</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 8-10 Day Section -->
+                    <div class="sub-card" onclick="toggleDetails(event, 'day8-10-details')">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-medium text-xl text-gray-800">8-10 天</h3>
+                            <i id="day8-10-details-arrow" class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        </div>
+                        <div id="day8-10-details" class="note-content mt-2 space-y-2 text-gray-700">
+                            <ul class="list-disc pl-5">
+                                <li>陰道發炎：陰道、皮膚發炎、脫水 <br> 狗狗 dehydration、脫水 <br> 20~23 天 → 陰道發炎和子宮發炎</li>
+                                <li>子宮發炎</li>
+                                <li>子宮內膜炎</li>
+                                <li>會流血，如果沒有流血，就不能夠在裡面檢查子宮內膜炎。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center mt-8 text-gray-500 text-sm">
+            <p>Generated from your handwritten notes.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleDetails(event, id) {
+            // Check if event is a string (id) or an actual event object
+            let elementId = id;
+            if (typeof event === 'string') {
+                elementId = event;
+            } else {
+                event.stopPropagation();
+            }
+
+            const detailsElement = document.getElementById(elementId);
+            const arrowElement = document.getElementById(elementId + '-arrow');
+            
+            // Toggle the 'active' class on the content element
+            detailsElement.classList.toggle('active');
+            
+            // Rotate the arrow icon
+            if (arrowElement) {
+                arrowElement.classList.toggle('rotate-180');
+            }
+        }
+    </script>
+</body>
+</html>
